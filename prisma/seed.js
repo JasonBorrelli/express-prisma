@@ -25,6 +25,7 @@ async function main() {
 
     // SELECT * FROM CATEGORY
     const categories = await prisma.category.findMany();
+    console.log(categories);
 
 
     //GENERAZIONE LIBRI
