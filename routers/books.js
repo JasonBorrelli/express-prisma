@@ -50,8 +50,5 @@ router.get( '/:id', async (req, res,) => {
     res.json(book);
 })
 
-
-router.post
-
 export default router;
 
