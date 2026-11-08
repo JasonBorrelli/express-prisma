@@ -1,13 +1,5 @@
-import 'dotenv/config';
-import { PrismaMariaDb } from '@prisma/adapter-mariadb';
-import { PrismaClient } from '../generated/prisma/index.js';
+import prisma from "../lib/prisma.js";
 
-
-
-const adapter = new PrismaMariaDb(process.env.DATABASE_URL);
-const  prisma = new PrismaClient({
-    adapter: adapter,
-});
 
 const randomArrayIndex = (length) => Math.floor(Math.random() * length);
 
