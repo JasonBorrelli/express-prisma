@@ -50,5 +50,25 @@ router.get( '/:id', async (req, res,) => {
     res.json(book);
 })
 
+router.post('/', async (req, res) => {
+    const { title, description, autor, price, isActive, categoryId} = req.body;
+
+    const newBook = await prisma.book.create({
+        data: {
+            title,
+            description,
+            autor,
+            price, 
+            isActive,
+            categoryId, 
+        },
+      /*   select: {
+            id: true
+        }, */
+    });
+
+    res.status(201).json(newBook);
+})
+
 export default router;
 

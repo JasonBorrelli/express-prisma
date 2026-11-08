@@ -6,6 +6,8 @@ import errorsHendler from "./middleware/errorsHendler.js";
 import notFound from "./middleware/notFound.js";
 
 
+app.use(express.json());
+
 app.get('/', (req, res) => {
     res.send('this is the shop homepage test');
 });
