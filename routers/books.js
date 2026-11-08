@@ -4,9 +4,43 @@ import prisma from "../lib/prisma.js";
 const router = express.Router();
 
 
-router.get('/',(req,res) => {
-    res.send('list of books');
+router.get('/', async (req,res) => {
+    const limit = req.query.limit;
+
+    //SELECT * FROM BOOK
+    const books = await prisma.book.findMany({
+        select: {
+            title: true,
+            autor: true,
+            description:true,
+            price: true,
+        },
+        take: limit ? Number(limit) : undefined,
+    });
+    res.json(books);
+    /* res.send('list of books'); */
 });
+
+router.get( '/:id', async (req, res,) => {
+    const id = Number(req.params.id)
+    if(!Number.isInteger(id)) {
+        return res.status(400).json({
+            error: 'Invalid book id'
+        })
+    }
+    
+    const book = await prisma.book.findUnique({
+        where: {
+            id,
+        }
+    })
+    if (!book){
+        return res.status(404).json({
+            error: 'Book Not Found'
+        }); 
+    }
+    res.json(book);
+})
 
 export default router;
 
