@@ -32,8 +32,16 @@ router.get( '/:id', async (req, res,) => {
     const book = await prisma.book.findUnique({
         where: {
             id,
+        },
+        include: {
+            category: {
+                 select: {
+                    name: true,
+                }
+            }
+            
         }
-    })
+    });
     if (!book){
         return res.status(404).json({
             error: 'Book Not Found'
@@ -41,6 +49,9 @@ router.get( '/:id', async (req, res,) => {
     }
     res.json(book);
 })
+
+
+router.post
 
 export default router;
 
