@@ -15,8 +15,8 @@ app.get('/', (req, res) => {
 app.use('/books', booksRouter);
 
 
-app.use(errorsHendler);
 app.use(notFound);
+app.use(errorsHendler);
 
 app.listen(port, () => 
     console.log('server started on http://localhost:' + port),

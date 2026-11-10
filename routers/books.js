@@ -50,6 +50,27 @@ router.get( '/:id', async (req, res,) => {
     res.json(book);
 })
 
+
+router.patch('/:id', async (req, res) =>{
+    const id = Number(req.params.id);
+
+    const { title, description, price, autor, isActive, categoryId } = req.body;
+
+    await prisma.book.update({
+        where:{
+            id,
+        },
+        data: {
+            title,
+            description,
+            autor,
+            price,
+            isActive,
+            categoryId
+        }
+    })
+})
+
 router.post('/', async (req, res) => {
     const { title, description, autor, price, isActive, categoryId} = req.body;
 
