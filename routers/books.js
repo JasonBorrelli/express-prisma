@@ -73,6 +73,12 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     const id = Number (req.params.id);
 
+    if(!Number.isInteger(id)) {
+        return res.status(400).json({
+            error: 'Invalid Book Id',
+        });
+    }                   
+
 
     await prisma.book.delete({
         where: {
