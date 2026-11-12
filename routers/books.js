@@ -111,6 +111,10 @@ router.delete('/:id', async (req, res) => {
             error: 'Book Not Found'
         }); 
     }
+     await prisma.book.delete({
+        where: { id },
+    });
+ 
 
     res.sendStatus(204);
 })

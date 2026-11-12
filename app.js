@@ -5,7 +5,6 @@ import booksRouter from "./routers/books.js";
 import errorsHendler from "./middleware/errorsHendler.js";
 import notFound from "./middleware/notFound.js";
 
-
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -17,6 +16,7 @@ app.use('/books', booksRouter);
 
 app.use(notFound);
 app.use(errorsHendler);
+
 
 app.listen(port, () => 
     console.log('server started on http://localhost:' + port),
